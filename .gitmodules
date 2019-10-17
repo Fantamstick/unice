@@ -1,0 +1,3 @@
+[submodule "Assets/unice"]
+	path = Assets/unice
+	url = https://github.com/Fantamstick/unice.git
