@@ -1,3 +1,6 @@
 [submodule "Assets/unice"]
 	path = Assets/unice
 	url = https://github.com/Fantamstick/unice.git
+[submodule "Assets/unice-samples"]
+	path = Assets/unice-samples
+	url = https://github.com/Fantamstick/unice-samples
