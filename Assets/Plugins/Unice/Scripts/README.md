@@ -1,5 +1,5 @@
 ## What is Unice?
-Unice is a light framework and way of building up a Unity3D project that is highly data-driven and allows developers to create a highly sustainable and view-centric testable environment. It's not yet battle-tested and a WIP.
+Unice is a light framework and way of building up a Unity3D project that is highly data-driven and allows developers to create a highly sustainable and view-centric testable environment. It's not yet battle-tested and a work in progress.
 
 ## Why Unice?
 ### Rapid Test Iteration
@@ -12,18 +12,28 @@ Most projects have tightly-coupled code which discourages fast iteration on the 
 Prefabs allow values to propagate across different scenes and allow reusability, but it's limited to gameobjects. Unice makes use of ScriptableObjects to reuse not just data, but also *Services*. Services are drag-and-drop scriptable objects used to give components access to behaviours outside of its immediate scope.
 
 ## Requirements
-- Unity 2019.3
-- [UniTask](https://github.com/Cysharp/UniTask) 1.3.1
+- Unity 2019.2 verified (but should work with Unity 2018.3 or later)
+- [UniTask](https://github.com/Cysharp/UniTask) 1.2.0
 
-## Installation as UMP Package
-Add `https://github.com/Fantamstick/unice.git?path=Assets/Plugins/Unice/Scripts` to Package Manager.
-
-or locate `manifest.json` in your Unity project's `Packages` folder and add the following dependencies:
+## Installation
+Locate `manifest.json` in your Unity project's `Packages` folder and add the following dependencies:
 ```
 "dependencies": {
-  "com.fantamstick.unice": "https://github.com/Fantamstick/unice.git?path=Assets/Plugins/Unice/Scripts",
+  "com.fantamstick.unice": "https://github.com/Fantamstick/unice.git",
+  "com.unitask": "https://github.com/futsuki/unitask-package.git",
   ...
 }
+```
+
+### Updating
+Delete Unice's "lock" field in `manifest.json` to allow the Unity editor find and update the framework to the latest version.
+```"lock": {
+    "com.fantamstick.unice": {
+      "hash": "b601a6b894a14613de804317d2d1e408cfa70a79",
+      "revision": "HEAD"
+    }
+    ...
+  }
 ```
 
 ## Using Unice

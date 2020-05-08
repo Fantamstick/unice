@@ -1,0 +1,17 @@
+{
+  "name": "com.fantamstick.unice",
+  "displayName": "Unice",
+  "version": "0.0.2",
+  "unity": "2019.3",
+  "license": "MIT",
+  "description": "Data-driven library for Unity",
+  "keywords": [
+    "framework"
+  ],
+  "type": "library",
+  "dependencies": {
+    "com.unity.textmeshpro": "2.0.1",
+    "com.unity.ugui": "1.0.0",
+    "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=Assets/UniRx.Async"
+  }
+}

@@ -1,0 +1,16 @@
+{
+    "name": "Unice.Editor",
+    "references": [
+        "GUID:c1095df0629704c90839ac73191eea94"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}
