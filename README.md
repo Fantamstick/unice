@@ -1,5 +1,5 @@
 ## What is Unice?
-Unice is a light framework and way of building up a Unity3D project that is highly data-driven and allows developers to create a highly sustainable and view-centric testable environment. It's not yet battle-tested and a WIP.
+Unice is a light framework and a concept for building a Unity3D game that is highly data-driven and view-centric testable. It's not yet battle-tested and is still a WIP.
 
 ## Why Unice?
 ### Rapid Test Iteration
@@ -15,6 +15,40 @@ Prefabs allow values to propagate across different scenes and allow reusability,
 - Unity 2019.3
 - [UniTask](https://github.com/Cysharp/UniTask) 1.3.1
 
+## Using Unice
+Unice is made up of the following concepts:
+- Coordinator (CR)
+- Container
+  - View (VI)
+  - Controller (CO)
+- Service
+- Data Object (SO)
+
+In a nutshell, coordinators tell the game *when* to run logic, containers tell the game *how* to run logic, and services help containers use asset and game data *without tight coupling*.
+
+![Hierarchy](/StoreDocument/hierarchy.jpg?raw=true "Hierarchy")
+
+### Coordinator (CR)
+A coordinator dictates *when* and *with what* controllers run. At the most macro-level, coordinators control the flow of the entire game and at the most micro can control the flow of the state of a scene such as a pause menu.
+
+It instantiates containers to do things and lets them tell the coordinator relevant data.
+
+### Container
+A container can be almost anything that can exist by itself in a Scene that interacts with the player in some way or fashion such as a button, image, collision, input, animation, etc. A container may not even have a view such as a random number generator.
+
+Containers are created by coordinators and are sometimes given data for them to do work. Coordinators do not know how coordinators work, they only know when they should be working.
+
+#### View (VI)
+A container's view is simply the glue that holds the container together. It has no logic at all and is always a MonoBehaviour so it can exist in a Scene. It simply exists to 
+- instantiate its Controller if needed.
+- Allow the developer to set important data via the inspector.
+
+#### Controller (CO)
+The container's controller takes control of the view's data and references for its processes. It communicates with a coordinator if needed.
+
+### Data Object (SO)
+A data object is a persistant ScriptableObject asset that lives in the project. It is useful for assigning test and production data to containers.
+
 ## Installation as UMP Package
 Add `https://github.com/Fantamstick/unice.git?path=Assets/Plugins/Unice/Scripts` to Package Manager.
 
@@ -25,31 +59,6 @@ or locate `manifest.json` in your Unity project's `Packages` folder and add the 
   ...
 }
 ```
-
-## Using Unice
-Unice is made up of the following assets:
-- Coordinator
-- Container
-  - View (MB)
-  - Controller (CO)
-- Service
-- Data Object (SO)
-
-### Coordinator
-A game is composed of coordinators which dictate when processes run. A coordinator could be in the context of a Scene or even more granular such as a pause menu.
-
-### Container
-A container can be anything that can exist by itself in a Scene that interacts with the player in some way or fashion such as a button, image, collision, input, animation, etc.
-
-[TODO: Post image here]
-
-#### View (MB)
-The container's (MonoBehaviour) view is simply the glue that holds the container together. It has no logic at all. It simply exists to 
-- instantiate its Controller 
-- Allow the developer to define important data via the inspector.
-
-#### Controller (CO)
-The container's controller takes control of the view's data and references for its processes. 
 
 ## References
 Motivation was born out of a desire to create more testable and highly iterative Unity projects. Many great ideas came from Ryan Hipple and his [blog post](http://www.roboryantron.com/2017/10/unite-2017-game-architecture-with.html) and video at Unite 2017 titled [Game Architecture with Scriptable Objects](https://www.youtube.com/watch?v=raQ3iHhE_Kk) and from Yoshifumi Kawai (a.k.a. neuecc) the creator of [UniRx](https://github.com/neuecc/UniRx) and [UniTask](https://github.com/Cysharp/UniTask).
