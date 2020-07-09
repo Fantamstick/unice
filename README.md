@@ -67,7 +67,8 @@ Add `https://github.com/Fantamstick/unice.git?path=Assets/Plugins/Unice/Scripts`
 or locate `manifest.json` in your Unity project's `Packages` folder and add the following dependencies:
 ```
 "dependencies": {
-  "com.fantamstick.unice": "https://github.com/Fantamstick/unice.git?path=Assets/Plugins/Unice/Scripts",
+  "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask#2.0.24",
+  "com.fantamstick.unice": "https://github.com/Fantamstick/unice.git?path=Assets/Plugins/Unice/Scripts#0.1.0",
   ...
 }
 ```
