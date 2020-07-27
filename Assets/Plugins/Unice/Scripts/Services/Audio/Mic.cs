@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 using Unice.Util;
-using UniRx.Async;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;

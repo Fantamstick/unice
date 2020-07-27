@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using Unice.Services.Time;
-using UniRx.Async;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Unice.Util

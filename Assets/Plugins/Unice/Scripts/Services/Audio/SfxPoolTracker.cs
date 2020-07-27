@@ -2,7 +2,7 @@
 using System.Threading;
 using Unice.Util;
 using Unice.ViewHelpers.Audio;
-using UniRx.Async;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Unice.Services.Audio

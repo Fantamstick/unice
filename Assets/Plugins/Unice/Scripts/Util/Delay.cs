@@ -1,5 +1,6 @@
-﻿using System.Threading;
-using UniRx.Async;
+﻿
+using System.Threading;
+using Cysharp.Threading.Tasks;
 
 namespace Unice.Util
 {
@@ -10,9 +11,9 @@ namespace Unice.Util
             return UniTask.Delay(ms, cancellationToken: ct);
         }
         
-        public static UniTask<int> NextFrame(CancellationToken ct = default(CancellationToken))
+        public static UniTask NextFrame(CancellationToken ct = default(CancellationToken))
         {
-            return UniTask.DelayFrame(1, cancellationToken: ct);
+            return UniTask.DelayFrame(1, PlayerLoopTiming.Update, cancellationToken: ct);
         }
 
         public static UniTask None()

@@ -2,7 +2,7 @@
 using System.Threading;
 using Unice.Models;
 using Unice.Util;
-using UniRx.Async;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Audio;
 
