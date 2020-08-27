@@ -24,7 +24,8 @@ namespace Unice.Services.Audio
         public SfxPoolTracker(int poolSize)
         {
             var sfxGameObject = new GameObject("Sfx Instance", typeof(AudioSource), typeof(SfxPlayComponent));
-
+            Object.DontDestroyOnLoad(sfxGameObject);
+            
             pool = new Pool<SfxPlayComponent>(poolSize, sfxGameObject);
             activeSfx = new List<SfxPlayComponent>();
         }

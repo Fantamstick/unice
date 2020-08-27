@@ -48,6 +48,7 @@ namespace Unice.Util
             for (var i = 0; i < size; i++)
             {
                 GameObject instance = Object.Instantiate(prefab);
+                Object.DontDestroyOnLoad(instance);
                 instance.SetActive(false);
 
                 T component = instance.GetComponent<T>();
