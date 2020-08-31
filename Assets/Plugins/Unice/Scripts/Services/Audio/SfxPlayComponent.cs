@@ -29,7 +29,7 @@ namespace Unice.Services.Audio
         /// </summary>
         public SfxPrioritySO Priority { private set; get; }
         
-        public CancellationTokenSource Play(SfxAudio audioSO, AudioMixerGroup audioMixerGroup, Transform followTarget)
+        public CancellationTokenSource Play(ISfxAudio audioSO, AudioMixerGroup audioMixerGroup, Transform followTarget)
         {
             // setup position and priority settings
             FollowTarget = followTarget;

@@ -24,7 +24,7 @@ namespace Unice.Services.Audio
         /// </summary>
         /// <param name="audio">Audio clip and settings SO</param>
         /// <param name="transition">Audio transition SO</param>
-        public void Play(AudioSO audio, BgmTransitionSO transition)
+        public void Play(IAudioSO audio, BgmTransitionSO transition)
         {
             // Stop playing bgm(s) currently playing
             Stop(transition.Outgoing);

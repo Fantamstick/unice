@@ -1,6 +1,5 @@
 ﻿using System.Threading;
 using Unice.Util;
-using Unice.ViewHelpers.Audio;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -25,7 +24,7 @@ namespace Unice.Services.Audio
         /// </summary>
         /// <param name="audio">Audio clip and settings SO</param>
         /// <param name="followTarget">Target for the sfx to follow when playing.</param>
-        public CancellationTokenSource Play(SfxAudio audio, Transform followTarget = null)
+        public CancellationTokenSource Play(ISfxAudio audio, Transform followTarget = null)
         {
             PoolTracker = PoolTracker ?? new SfxPoolTracker(PoolSize);
 

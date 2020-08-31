@@ -33,7 +33,7 @@ namespace Unice.Services.Audio
         /// <summary>
         /// Borrow SFX play instance.
         /// </summary>
-        public SfxPlayComponent Borrow(SfxAudio audio, Transform followTarget)
+        public SfxPlayComponent Borrow(ISfxAudio audio, Transform followTarget)
         {
             if (pool.ItemsAvailable == 0)
             {

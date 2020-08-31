@@ -5,9 +5,9 @@ using UnityEngine;
 namespace Unice.ViewHelpers.Audio
 {
     [Serializable]
-    public class SfxAudio : ISfxAudio
+    public class SfxAudioStringReference : ISfxAudio
     {
-        [SerializeField] AudioSO audio = default;
+        [SerializeField] AudioStringReferenceSO audio = default;
         [SerializeField] SfxPrioritySO priority = default;
 
         public IAudioSO Audio => audio;
