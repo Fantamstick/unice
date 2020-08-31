@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using Cysharp.Threading.Tasks;
 using Unice.Models;
 using Unice.Util;
 using Unice.ViewHelpers.Audio;
@@ -36,17 +37,19 @@ namespace Unice.Services.Audio
             Priority = audioSO.Priority;    
             
             // setup audio source
-            AudioSource = GetComponent<AudioSource>();
-            AudioSource.outputAudioMixerGroup = audioMixerGroup;
-            AudioSource.clip = audioSO.Audio.GetAudioClip();
-            AudioSource.loop = audioSO.Audio.Details.Looping;
+            audioSO.Audio.LoadAsync().ContinueWith(() => {
+                AudioSource = GetComponent<AudioSource>();
+                AudioSource.outputAudioMixerGroup = audioMixerGroup;
+                AudioSource.clip = audioSO.Audio.GetAudioClip();
+                AudioSource.loop = audioSO.Audio.Details.Looping;
+
+                // play
+                AudioSource.Play();
+            });
             
             // create cancellation token
             var cts = new CancellationTokenSource();
             Ct = cts.Token;
-            
-            // play
-            AudioSource.Play();
 
             return cts;
         }

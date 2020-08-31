@@ -2,7 +2,7 @@
   "name": "com.fantamstick.unice",
   "displayName": "Unice",
   "category": "Library",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "unity": "2019.3",
   "license": "MIT",
   "description": "Data-driven library for Unity",

@@ -29,16 +29,17 @@ namespace Unice.Services.Audio
             // Stop playing bgm(s) currently playing
             Stop(transition.Outgoing);
 
-            // create bgm reference
-            var audioRef = CreateBgmReference(audio);
-            
-            // play bgm
-            audioRef.AudioSource.Play();
+            // setup audio source
+            audio.LoadAsync().ContinueWith(() => {
+                // play bgm
+                var audioRef = CreateBgmReference(audio);
+                audioRef.AudioSource.Play();
 
-            // apply volume transition
-            ApplyVolumeTransition(audioRef, audio.Details.MaxVolume, transition.Incoming).Forget();
+                // apply volume transition
+                ApplyVolumeTransition(audioRef, audio.Details.MaxVolume, transition.Incoming).Forget();
             
-            audioReferences.Add(audioRef);
+                audioReferences.Add(audioRef);
+            });
         }
 
         BgmReference CreateBgmReference(IAudioSO audio)
