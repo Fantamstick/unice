@@ -36,12 +36,12 @@ namespace Unice.Services.Audio
             audioRef.AudioSource.Play();
 
             // apply volume transition
-            ApplyVolumeTransition(audioRef, audio.MaxVolume, transition.Incoming).Forget();
+            ApplyVolumeTransition(audioRef, audio.Details.MaxVolume, transition.Incoming).Forget();
             
             audioReferences.Add(audioRef);
         }
 
-        BgmReference CreateBgmReference(AudioSO audio)
+        BgmReference CreateBgmReference(IAudioSO audio)
         {
             // create new bgm GameObject
             var audioSourceObj = new GameObject("Bgm Source");
@@ -51,8 +51,8 @@ namespace Unice.Services.Audio
             // create and setup bgm audio source
             var audioSource = audioSourceObj.AddComponent<AudioSource>();
             audioSource.outputAudioMixerGroup = audioMixerGroup;
-            audioSource.clip = audio.AudioClip;
-            audioSource.loop = audio.Looping;
+            audioSource.clip = audio.GetAudioClip();
+            audioSource.loop = audio.Details.Looping;
 
             return new BgmReference(audio, audioSourceObj, audioSource);
         }
@@ -90,7 +90,7 @@ namespace Unice.Services.Audio
             audioReferences.Remove(bgm);
 
             //BUG: If a track is fading in at this time, it will instantly play at "MaxVolume" before fading out.
-            await ApplyVolumeTransition(bgm, bgm.AudioSO.MaxVolume, outgoingTransition);
+            await ApplyVolumeTransition(bgm, bgm.AudioSO.Details.MaxVolume, outgoingTransition);
 
             // Destroy when outgoing transition is complete
             Destroy(bgm.GameObject);
@@ -98,13 +98,13 @@ namespace Unice.Services.Audio
 
         class BgmReference
         {
-            public readonly AudioSO AudioSO;
+            public readonly IAudioSO AudioSO;
             public readonly GameObject GameObject;
             public readonly AudioSource AudioSource;
             
             CancellationTokenSource cts;
 
-            public BgmReference(AudioSO audioSO, GameObject gameObject, AudioSource audioSource)
+            public BgmReference(IAudioSO audioSO, GameObject gameObject, AudioSource audioSource)
             {
                 AudioSO = audioSO;
                 GameObject = gameObject;

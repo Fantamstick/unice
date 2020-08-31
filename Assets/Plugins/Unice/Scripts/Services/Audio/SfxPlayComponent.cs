@@ -38,8 +38,8 @@ namespace Unice.Services.Audio
             // setup audio source
             AudioSource = GetComponent<AudioSource>();
             AudioSource.outputAudioMixerGroup = audioMixerGroup;
-            AudioSource.clip = audioSO.Audio.AudioClip;
-            AudioSource.loop = audioSO.Audio.Looping;
+            AudioSource.clip = audioSO.Audio.GetAudioClip();
+            AudioSource.loop = audioSO.Audio.Details.Looping;
             
             // create cancellation token
             var cts = new CancellationTokenSource();
