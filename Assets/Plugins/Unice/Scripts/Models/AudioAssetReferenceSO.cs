@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Unice.Models {
     /// <summary>
-    /// Audio reference data object.
+    /// Audio asset reference data object.
     /// </summary>
-    [CreateAssetMenu(fileName = "new Audio Reference", menuName = "Unice/Models/Audio Reference")]
-    public class AudioReferenceSO : ScriptableObject, IAudioSO {
+    [CreateAssetMenu(fileName = "new Audio Asset Reference", menuName = "Unice/Models/Audio Asset Reference")]
+    public class AudioAssetReferenceSO : ScriptableObject, IAudioSO {
         public AssetReferenceAudioClip AudioClipReference;
-        
+
         [SerializeField] 
         AudioDetails details = default;
         public AudioDetails Details => details;
