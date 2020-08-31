@@ -22,7 +22,7 @@ namespace Unice.Models {
         /// <summary>
         /// Load audio clip asset into memory.
         /// </summary>
-        public async UniTask LoadAssetAsync() {
+        public async UniTask LoadAsync() {
             if (clip == null) {
                 clip = await Addressables.LoadAssetAsync<AudioClip>(StringReference).Task;
             }

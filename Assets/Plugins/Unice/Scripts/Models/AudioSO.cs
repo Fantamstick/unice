@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Unice.Models
 {
@@ -14,6 +15,8 @@ namespace Unice.Models
         [SerializeField] 
         AudioDetails details = null;
         public AudioDetails Details => details;
+
+        public UniTask LoadAsync() => UniTask.CompletedTask;
 
         public AudioClip GetAudioClip() => audioClip;
     }
