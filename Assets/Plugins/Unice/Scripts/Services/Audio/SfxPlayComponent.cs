@@ -42,7 +42,8 @@ namespace Unice.Services.Audio
                 AudioSource.outputAudioMixerGroup = audioMixerGroup;
                 AudioSource.clip = audioSO.Audio.GetAudioClip();
                 AudioSource.loop = audioSO.Audio.Details.Looping;
-
+                AudioSource.gameObject.SetActive(true);
+                
                 // play
                 AudioSource.Play();
             });
