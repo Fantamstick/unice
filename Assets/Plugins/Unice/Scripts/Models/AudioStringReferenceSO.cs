@@ -44,9 +44,8 @@ namespace Unice.Models {
         /// Unload audio clip from memory.
         /// </summary>
         public void Unload() {
-            if (clip != null) {
-                Addressables.Release(clip);
-            }
+            //TODO: make sure clip is unloaded.
+            clip = null;
         }
     }
 }
