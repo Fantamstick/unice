@@ -97,6 +97,23 @@ namespace Unice.Services.Audio
             Destroy(bgm.GameObject);
         }
 
+        /// <summary>
+        /// Transition audio mixer to specified snapshot.
+        /// </summary>
+        /// <param name="snapshotName">Name of snapshot to transition to.</param>
+        /// <param name="transitionTime">Duration from current to specified snapshot.</param>
+        public void TransitionToSnapshot(string snapshotName, float transitionTime) 
+        {
+            var snapshot = audioMixerGroup.audioMixer.FindSnapshot(snapshotName);
+            if (snapshot == null) 
+            {
+                Debug.LogWarning($"Unable to find audio mixer snapshot: {snapshotName}");
+                return;
+            }
+            
+            snapshot.TransitionTo(transitionTime);
+        }
+        
         class BgmReference
         {
             public readonly IAudioSO AudioSO;
