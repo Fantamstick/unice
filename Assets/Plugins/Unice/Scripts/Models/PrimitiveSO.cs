@@ -7,10 +7,10 @@ namespace Unice.Models
     /// Base class for primitive object data.
     /// </summary>
     /// <typeparam name="T">Primitive type.</typeparam>
-    public abstract class PrimitiveSO<T> : ScriptableObject where T : struct
+    public abstract class PrimitiveSO<T> : ScriptableObject
     {
         [SerializeField]
-        T value;
+        T value = default;
 
         /// <summary>
         /// Set value.
