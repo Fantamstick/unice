@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace Unice.Models
 {
@@ -21,6 +22,7 @@ namespace Unice.Models
         /// <summary>
         /// The language text.
         /// </summary>
+        [Multiline]
         public string Value;
     }
 }
