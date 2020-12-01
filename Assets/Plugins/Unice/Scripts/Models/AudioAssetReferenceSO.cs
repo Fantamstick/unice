@@ -17,9 +17,13 @@ namespace Unice.Models {
         /// Load audio clip asset into memory.
         /// </summary>
         public async UniTask LoadAsync() {
-            if (AudioClipReference.Asset == null) {
-                await AudioClipReference.LoadAssetAsync();
-            }
+            // Asset is loading or has already loaded.
+            if (AudioClipReference.IsValid()) {
+                await UniTask.WaitUntil(() => AudioClipReference.IsDone);
+                return;
+            } 
+                
+            await AudioClipReference.LoadAssetAsync();
         }
     
         /// <summary>
