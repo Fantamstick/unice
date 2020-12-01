@@ -42,6 +42,7 @@ namespace Unice.Services.Audio
                 AudioSource.outputAudioMixerGroup = audioMixerGroup;
                 AudioSource.clip = audioSO.Audio.GetAudioClip();
                 AudioSource.loop = audioSO.Audio.Details.Looping;
+                AudioSource.volume = audioSO.Audio.Details.MaxVolume;
                 AudioSource.gameObject.SetActive(true);
                 
                 // play
