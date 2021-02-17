@@ -31,11 +31,17 @@ namespace Unice.Services.Audio
             try
             {
                 // set transform parent
-                if (followTarget == null) followTarget = Mic.Transform;
-                
+                if (followTarget == null) {
+                    followTarget = Mic.Transform;
+                }
+
                 // borrow sfx from pool
                 SfxPlayComponent sfxPlayComponent = PoolTracker.Borrow(audio, followTarget);
 
+                if (sfxPlayComponent == null) {
+                    return null;
+                }
+                
                 // play sfx and return cancellation token source
                 return sfxPlayComponent.Play(audio, audioMixerGroup, followTarget);
             }
