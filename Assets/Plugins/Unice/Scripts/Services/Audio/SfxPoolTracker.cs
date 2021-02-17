@@ -24,10 +24,13 @@ namespace Unice.Services.Audio
         public SfxPoolTracker(int poolSize)
         {
             var sfxGameObject = new GameObject("Sfx Instance", typeof(AudioSource), typeof(SfxPlayComponent));
+            sfxGameObject.GetComponent<AudioSource>().playOnAwake = false;
             Object.DontDestroyOnLoad(sfxGameObject);
             
             pool = new Pool<SfxPlayComponent>(poolSize, sfxGameObject);
             activeSfx = new List<SfxPlayComponent>();
+            
+            UpdateInstancesAsync().Forget();
         }
 
         /// <summary>
@@ -53,13 +56,7 @@ namespace Unice.Services.Audio
                 SfxPlayComponent sfx = pool.Borrow();
                 
                 activeSfx.Add(sfx);
-            
-                // start updating when list is no longer empty.
-                if (activeSfx.Count == 1)
-                {
-                    UpdateInstancesAsync().Forget();
-                }
-                
+
                 return sfx;
             }
             catch (ErrPoolExhausted e)
@@ -83,20 +80,18 @@ namespace Unice.Services.Audio
                 for (int i = activeSfx.Count - 1; i >= 0; i--)
                 {
                     SfxPlayComponent sfx = activeSfx[i];
-
+                    if (sfx.AudioSource == null)
+                        continue;
+                    
                     // stopped
-                    if (sfx.AudioSource == null || !sfx.AudioSource.isPlaying)
+                    if (!sfx.AudioSource.isPlaying)
                     {
                         Return(sfx);
-                        
-                        if(activeSfx.Count == 0) return;
                     }
                     // canceled
                     else if (sfx.Ct.IsCancellationRequested || sfx.FollowTarget == null)
                     {
                         Stop(sfx);
-
-                        if (activeSfx.Count == 0) return;
                     }
                     // playing
                     else
