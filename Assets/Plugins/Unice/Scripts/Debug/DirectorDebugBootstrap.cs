@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 /// <summary>
 /// Debug bootstrap for Directors.
@@ -14,5 +15,5 @@ public abstract class DirectorDebugBootstrap : MonoBehaviour {
         }
     }
     
-    protected abstract void OnStart();
+    protected abstract UniTaskVoid OnStart();
 }
