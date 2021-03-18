@@ -19,5 +19,7 @@ namespace Unice.Models
         public UniTask LoadAsync() => UniTask.CompletedTask;
 
         public AudioClip GetAudioClip() => audioClip;
+
+        public void Unload() { }
     }
 }

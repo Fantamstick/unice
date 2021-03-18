@@ -111,8 +111,8 @@ namespace Unice.Services.Audio
             Return(sfx);
         }
 
-        void Return(SfxPlayComponent sfx)
-        {
+        void Return(SfxPlayComponent sfx) {
+            sfx.AudioSource.clip = null;
             pool.Return(sfx);
             activeSfx.Remove(sfx);
 

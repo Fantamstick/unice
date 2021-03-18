@@ -93,6 +93,8 @@ namespace Unice.Services.Audio
             //BUG: If a track is fading in at this time, it will instantly play at "MaxVolume" before fading out.
             await ApplyVolumeTransition(bgm, bgm.AudioSO.Details.MaxVolume, outgoingTransition);
 
+            bgm.AudioSO.Unload();
+            
             // Destroy when outgoing transition is complete
             Destroy(bgm.GameObject);
         }

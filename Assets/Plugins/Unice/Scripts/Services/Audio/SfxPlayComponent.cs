@@ -29,9 +29,12 @@ namespace Unice.Services.Audio
         /// The priority of current SFX audio.
         /// </summary>
         public SfxPrioritySO Priority { private set; get; }
+
+        ISfxAudio audioData;
         
-        public CancellationTokenSource Play(ISfxAudio audioSO, AudioMixerGroup audioMixerGroup, Transform followTarget)
-        {
+        public CancellationTokenSource Play(ISfxAudio audioSO, AudioMixerGroup audioMixerGroup, Transform followTarget) {
+            audioData = audioSO;
+            
             // setup position and priority settings
             FollowTarget = followTarget;
             Priority = audioSO.Priority;    
@@ -63,6 +66,9 @@ namespace Unice.Services.Audio
         
         void IPoolable.Clean()
         {
+            if (audioData != null && audioData.Audio.Details.UnloadAfterPlay) {
+                audioData.Audio.Unload();
+            }
         }
     }
 }
