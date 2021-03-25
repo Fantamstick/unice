@@ -24,10 +24,11 @@ namespace Unice.Services.Audio
         /// </summary>
         /// <param name="audio">Audio clip and settings SO</param>
         /// <param name="transition">Audio transition SO</param>
-        public void Play(IAudioSO audio, BgmTransitionSO transition)
+        public void Play(IAudioSO audio, BgmTransitionSO transition = null)
         {
             // Stop playing bgm(s) currently playing
-            Stop(transition.Outgoing);
+            var outgoingTransition = transition != null ? transition.Outgoing : null;
+            Stop(outgoingTransition);
 
             // setup audio source
             audio.LoadAsync().ContinueWith(() => {
@@ -35,8 +36,13 @@ namespace Unice.Services.Audio
                 var audioRef = CreateBgmReference(audio);
                 audioRef.AudioSource.Play();
 
-                // apply volume transition
-                ApplyVolumeTransition(audioRef, audio.Details.MaxVolume, transition.Incoming).Forget();
+                if (transition != null && transition.Incoming != null) {
+                    // apply volume transition
+                    ApplyVolumeTransition(audioRef, audio.Details.MaxVolume, transition.Incoming).Forget();
+                } else {
+                    audioRef.AudioSource.volume = audio.Details.MaxVolume;
+                }
+                
             
                 audioReferences.Add(audioRef);
             });
@@ -82,7 +88,7 @@ namespace Unice.Services.Audio
             }
         }
         
-        async UniTask StopTrackAsync(BgmReference bgm, AnimationCurveSO outgoingTransition)
+        async UniTask StopTrackAsync(BgmReference bgm, AnimationCurveSO outgoingTransition = null)
         {
             // Cancel any transitions if not complete
             bgm.CancelVolumeTransition();
@@ -90,8 +96,10 @@ namespace Unice.Services.Audio
             // Remove from referencable list
             audioReferences.Remove(bgm);
 
-            //BUG: If a track is fading in at this time, it will instantly play at "MaxVolume" before fading out.
-            await ApplyVolumeTransition(bgm, bgm.AudioSO.Details.MaxVolume, outgoingTransition);
+            if (outgoingTransition != null) {
+                //BUG: If a track is fading in at this time, it will instantly play at "MaxVolume" before fading out.
+                await ApplyVolumeTransition(bgm, bgm.AudioSO.Details.MaxVolume, outgoingTransition);
+            }
 
             bgm.AudioSO.Unload();
             
@@ -138,7 +146,7 @@ namespace Unice.Services.Audio
                 return cts.Token;
             }
 
-            public void CancelVolumeTransition() => cts.Cancel();
+            public void CancelVolumeTransition() => cts?.Cancel();
         }
     }
 }
