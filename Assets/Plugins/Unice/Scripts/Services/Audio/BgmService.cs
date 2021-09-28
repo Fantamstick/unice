@@ -72,7 +72,10 @@ namespace Unice.Services.Audio
 
             void OnVolumeChanged(float volume)
             {
-                bgm.AudioSource.volume = volume * maxVolume;
+                if(bgm != null && bgm.AudioSource != null)
+                {
+                    bgm.AudioSource.volume = volume * maxVolume;
+                }
             }
         }
 
