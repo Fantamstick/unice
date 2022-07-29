@@ -5,10 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/ManaKingAssets/Scenes/GameScene.unity
-    guid: 0b536e175c64d4f98ba36d6e68025619
-  - enabled: 1
-    path: Assets/ManaKingAssets/Scenes/TitleScene.unity
-    guid: 96ecb0cb1908c424aba165128a7f1fd8
-  m_configObjects: {}
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 7b4bf443ca2f2284cac53f58ac685790,
+      type: 2}
+    com.unity.localization.addressable-group-rules: {fileID: 11400000, guid: 532ae7df784858c4cafc7fbc60e4364f,
+      type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: 93715f60e14a70b43a262642d9236a8e,
+      type: 2}
