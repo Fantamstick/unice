@@ -63,7 +63,7 @@ public class EncryptedPersistentStorageService : StorageService {
             string path = GetFullPath(key);
             
             if (!File.Exists(path)) {
-                return UniTask.FromResult((string.Empty, "File does not exist"));
+                return UniTask.FromResult((string.Empty, error));
             }
             
             // load in the save data as byte array
