@@ -21,16 +21,16 @@ public class EncryptedPersistentStorageService : StorageService {
         try {
             string encryptedData = Cryptography.Encrypt(data, encryptionPassword);
             byte[] byteData = Encoding.UTF8.GetBytes(encryptedData);
-            
-            // write the new content
-            string path = GetFullPath(key);
-            File.WriteAllBytes(path, byteData);
 #if DEV_TEST_FILEACCESS_ERROR
             if (UnityEngine.Random.Range(0, 10) < 2) {
                 // 20% chance of triggering failed save
                 throw new Exception("Failed data load exception");
             }
 #endif
+            // write the new content
+            string path = GetFullPath(key);
+            File.WriteAllBytes(path, byteData);
+
             return UniTask.FromResult(true);
         } catch (Exception e) {
             saveError = e.Message;
