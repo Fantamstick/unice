@@ -121,6 +121,6 @@ public class EncryptedPersistentStorageService : StorageService {
             Directory.CreateDirectory(directoryName);
         }
 
-        return Path.Combine(directoryName, FileName + ".txt");
+        return Path.Combine(directoryName, FileName);
     }
 }
